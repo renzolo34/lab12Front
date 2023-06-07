@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="products">
+  <ng-container matColumnDef="name">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Categoria </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.category}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="location">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Ubicación </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.location}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Precio </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="img">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td class="texto" mat-cell *matCellDef="let element">
+      <img src="http://localhost:3000/{{element.imageName}}">
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th class="texto" mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button color="primary" (click)="createLink.click()">
+        <a routerLink="/create" #createLink></a>
+        <mat-icon>add</mat-icon>
+      </button>
+    </th>
+    <td class="texto" mat-cell *matCellDef="let element">
+      <button class="center-button" mat-fab color="primary" aria-label="Editar este producto" routerLink="/edit" routerLink="/edit/{{element._id}}">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-fab color="warn" aria-label="Eliminar este producto" (click)="confirmDelete(element._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

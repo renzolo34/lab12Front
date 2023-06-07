@@ -1,0 +1,23 @@
+<form [formGroup]="productForm" (ngSubmit)="submitProductForm()" enctype="multipart/form-data">
+  <h1>{{ title }}</h1>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoria</mat-label>
+    <input matInput formControlName="category">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ubicación</mat-label>
+    <input matInput formControlName="location">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput formControlName="price">
+  </mat-form-field>
+  <button type="button" mat-raised-button (click)="fileInput.click()">Selecciona una imagen</button>
+  <input hidden #fileInput type="file" (change)="onFileSelect($event)">
+  <span class="file-name">{{ productForm.value.imgFile?.name }}</span>
+  <button mat-flat-button color="primary" type="submit">Enviar</button>
+</form>
